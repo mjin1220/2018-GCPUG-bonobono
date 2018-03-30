@@ -1,5 +1,6 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
+let fs = require('fs');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -12,8 +13,10 @@ router.get('/queryTest', function(req, res, next){
     projectId: 'gcp-hackathon18-icn-2910',
   });
 
+	console.log(fs.readFileSync('./config/test.sql').toString());
+
   const options = {
-    query: `select * from bigquery-public-data.chicago_crime.crime limit 1`,
+    query: fs.readFileSync('./config/test.sql').toString(),
     timeoutMs: 10000, // Time out after 10 seconds.
     useLegacySql: false, // Use standard SQL syntax for queries.
   };
