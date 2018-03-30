@@ -11,13 +11,17 @@ router.get('/', function (req, res, next) {
   });
 });
 
+router.get('/result', function(req, res, next){
+  res.render('result', {
+    title: 'Air Bonobono'
+  });
+})
+
 router.get('/queryTest', function (req, res1, next) {
   const BigQuery = require('@google-cloud/bigquery');
   const bigquery = new BigQuery({
     projectId: 'gcp-hackathon18-icn-2910',
   });
-
-
 
   process.env.GOOGLE_APPLICATION_CREDENTIALS = './config/GCP_Hackathon_Korea_2910-5e0999b1ab4c.json';
 
@@ -36,7 +40,7 @@ router.get('/queryTest', function (req, res1, next) {
     result.lng = location.getElementsByTagName('lng')[0].childNodes[0].nodeValue;
 
     const options = {
-      query: `CREATE TEMP FUNCTION RADIANS(x FLOAT64) AS (ACOS(-1) * x / 180); SELECT count(*) FROM \`bigquery-public-data.chicago_crime.crime\` WHERE ( 6371 * acos( cos( RADIANS(${result.lat}) ) * cos( RADIANS( latitude ) ) * cos( RADIANS( longitude ) - RADIANS(${result.lng}) ) + sin( RADIANS(${result.lat}) ) * sin( RADIANS( latitude ) ) ) ) < 0.5`,
+      query: `CREATE TEMP FUNCTION RADIANS(x FLOAT64) AS (ACOS(-1) * x / 180); SELECT * FROM \`bigquery-public-data.chicago_crime.crime\` WHERE ( 6371 * acos( cos( RADIANS(${result.lat}) ) * cos( RADIANS( latitude ) ) * cos( RADIANS( longitude ) - RADIANS(${result.lng}) ) + sin( RADIANS(${result.lat}) ) * sin( RADIANS( latitude ) ) ) ) < 0.5`,
       // query: "select * from \`bigquery-public-data.chicago_crime.crime\` limit 5",
       timeoutMs: 10000, // Time out after 10 seconds.
       useLegacySql: false, // Use standard SQL syntax for queries.
@@ -46,16 +50,12 @@ router.get('/queryTest', function (req, res1, next) {
       .query(options)
       .then(results => {
         const rows = results[0];
-        console.log('Rows:');
-        rows.forEach(row => console.log(row));
         res1.json(rows)
       })
       .catch(err => {
         console.error('ERROR:', err);
       });
   });
-
-
 });
 
 module.exports = router;
