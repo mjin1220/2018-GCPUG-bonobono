@@ -37,6 +37,7 @@ function searchData(e){
             document.getElementById('searchBtn').value = ""
             return
         }
+        sessionStorage.location = JSON.stringify(data.location);
         sessionStorage.crimeData = JSON.stringify(data.crimeData);
         sessionStorage.markData = JSON.stringify(data.markData);
         window.location = "/result";

@@ -65,6 +65,7 @@ router.post('/api', function (req, res1, next) {
       .then(results => {
         const rows = results[0];
         let resultJSON = {};
+        resultJSON.location = result;
         resultJSON.crimeData = rows;
         resultJSON.markData = rows2;
         res1.json(resultJSON);
