@@ -159,8 +159,8 @@ input {
   padding: 3px;
 }
 
-.house .house-name{
-  color:rgb(73, 80, 86);
-  background-color: #fff;
+.house .house-name textarea{
+  background-color:rgb(73, 80, 86);
+  color: #fff;
   font-weight: 800;
 }
