@@ -1,101 +1,149 @@
-.header{
-    background-color: #343A40;
-    height: 100px;
-    vertical-align: middle;
+body {
+  background-color: #343A40;
 }
 
-.header .header-left{
-    float: left;
-    width: 70%;
-    text-align: center;
+.header {
+  background-color: #343A40;
+  height: 80px;
+  display: flex;
+  text-align: center;
+  vertical-align: center;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-.header .header-right{
-    float: right;
-    width: 30%;
-    margin-right: 30px;
-    text-align: right;
+.header .logo {
+  padding-right: 30px;
+}
+
+.header .search {
+  width: 500px;
+}
+
+.header .margin {}
+
+input {
+  font-size: 16px;
+  padding: 10px;
+  border: 0px;
+  outline: none;
 }
 
 .container {
-    width: 100%;
-    display: flex;
-}
-.checkbox {
-    flex: 1;
-}
-#map {
-    flex: 3;
-    height: 546px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.recommend {
-    flex: 1;
-    text-align: center;
+  width: 100%;
+  display: flex;
+  background-color: white;
 }
 
-.recommend:before{
-    content:'';
-    height:100%;
-    display:inline-block;
-    vertical-align:middle;
+.checkbox {
+  background-color: #495056;
+  flex: box;
+  flex: 1;
 }
-button{
-    background: #2DB9EC;
-    color:#fff;
-    border:none;
-    position:relative;
-    height:60px;
-    font-size:1.6em;
-    padding:0 2em;
-    cursor:pointer;
-    transition:800ms ease all;
-    outline:none;
+
+#map {
+  flex: 3;
+  height: 546px;
+  margin-left: auto;
+  margin-right: auto;
 }
-button:hover{
-    background:#fff;
-    color:#2DB9EC;
+
+.recommend {
+  flex: 1;
+  text-align: center;
 }
-button:before,button:after{
-    content:'';
-    position:absolute;
-    top:0;
-    right:0;
-    height:2px;
-    width:0;
-    background: #2DB9EC;
-    transition:400ms ease all;
+
+.recommend:before {
+  content: '';
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
 }
-button:after{
-    right:inherit;
-    top:inherit;
-    left:0;
-    bottom:0;
+
+button {
+  background: #2DB9EC;
+  color: #fff;
+  border: none;
+  position: relative;
+  height: 60px;
+  font-size: 1.6em;
+  padding: 0 2em;
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
 }
-button:hover:before,button:hover:after{
-    width:100%;
-    transition:800ms ease all;
+
+button:hover {
+  background: #fff;
+  color: #2DB9EC;
+}
+
+button:before,
+button:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: #2DB9EC;
+  transition: 400ms ease all;
+}
+
+button:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+
+button:hover:before,
+button:hover:after {
+  width: 100%;
+  transition: 800ms ease all;
 }
 
 #snackbar {
-    visibility: hidden;
-    min-width: 250px;
-    margin-left: -125px;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    border-radius: 2px;
-    padding: 16px;
-    position: fixed;
-    z-index: 1;
-    left: 50%;
-    bottom: 30px;
-    font-size: 17px;
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
 }
 
 #snackbar.show {
-    visibility: visible;
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+.semi-title{
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  vertical-align: center;
+  border-bottom:1px solid #343A40;
+  color: white;
+}
+.box{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  border-bottom:1px solid #343A40;
+  color: white;
+}
+
+.filter_search{
+  margin: 20px;
+  text-align: center;
+  vertical-align: center;
+
 }

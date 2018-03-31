@@ -54,7 +54,11 @@ router.post('/api', function (req, res1, next) {
       useLegacySql: false, // Use standard SQL syntax for queries.
     };
 
+<<<<<<< HEAD
     var rows2 =  db.query("SELECT name, latitude, longitude FROM chicago_airbnb.airbnb WHERE ( 6371 * acos( cos( radians(" + result.lat + ") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(" + result.lng + ") ) + sin( radians(" + result.lat + ") ) * sin( radians( latitude ) ) ) ) < 0.5")
+=======
+    var rows2 =  db.query("SELECT name, latitude, longitude FROM chicago_airbnb.airbnb WHERE ( 6371 * acos( cos( radians(" + result.lat + ") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(" + result.lng + ") ) + sin( radians(" + result.lat + ") ) * sin( radians( latitude ) ) ) ) < 0.1")
+>>>>>>> b5c31f36a28377a99c0f907a5db7d964c470a8ec
 
   
     bigquery
