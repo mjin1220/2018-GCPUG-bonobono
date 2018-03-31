@@ -60,6 +60,7 @@
                 </td>
             </tr>
         </table>
+        <div id="snackbar">Some text some message..</div>
         <div id="map">
 
             <script>
@@ -126,7 +127,10 @@
 
 
                     for (var i = 0; i < markers.length; i++) {
+                        console.log( i + " " +  JSON.stringify(markers[i].name));
+
                         marker = new google.maps.Marker({
+<<<<<<< HEAD
                             position: {
                                 lat: markers[i].latitude,
                                 lng: markers[i].longitude
@@ -156,6 +160,22 @@
        
                     }*/
 
+=======
+                            position: {lat : markers[i].latitude, lng :  markers[i].longitude},
+                            map: map,
+                            title : JSON.stringify(markers[i].name)
+                        });
+
+                        marker.addListener('click', function() {
+                            var x = document.getElementById("snackbar");
+                            x.className = "show";
+                            x.innerText = this.title;
+                            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
+
+                        });
+                    }
+
+>>>>>>> a153ae87b65c7b819d3e1181262a6678f0275f0d
                 }
             </script>
             <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQZ22KzXUgiMCBSejOXiv1DXZ0NWHUkgE&callback=initMap">
