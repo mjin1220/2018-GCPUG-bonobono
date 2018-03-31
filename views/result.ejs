@@ -143,24 +143,24 @@
                     }
 
                     console.log(markers_crime)
-                    // for (var i = 0; i < markers_crime.length; i+5) {
-                    //      marker = new google.maps.Marker({
+                     for (var i = 0; i < markers_crime.length; i+5) {
+                          marker = new google.maps.Marker({
 
-                    //         position: {
-                    //             lat: Number(markers_crime[i].latitude),
-                    //             lng: Number(markers_crime[i].longitude)
-                    //         },
-                    //         map: map,
-                    //         icon: {
-                    //             path: google.maps.SymbolPath.CIRCLE,
-                    //             fillColor: 'blue',
-                    //             fillOpacity: .2,
-                    //             strokeColor: 'white',
-                    //             strokeWeight: .5,
-                    //             scale: 10
-                    //         }
-                    //     });
-                    // }
+                             position: {
+                                 lat: Number(markers_crime[i].latitude),
+                                 lng: Number(markers_crime[i].longitude)
+                             },
+                             map: map,
+                             icon: {
+                                 path: google.maps.SymbolPath.CIRCLE,
+                                 fillColor: 'blue',
+                                 fillOpacity: .2,
+                                 strokeColor: 'white',
+                                 strokeWeight: .5,
+                                 scale: 10
+                             }
+                         });
+                     }
 
                 }
             </script>
