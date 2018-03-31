@@ -3,5 +3,5 @@ module.exports = {
     user     : 'root',
     password : '0113',
     port     : 3306,
-    database : 'bonobono'
+    database : 'chicago_airbnb'
 }
