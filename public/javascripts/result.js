@@ -43,3 +43,30 @@ function searchData(e){
         window.location = "/result";
     });
 }
+
+$('.icon').click(){
+    document.getElementsByClassName('loader')[0].style.display = 'block';
+
+
+    var keyword = {};
+    keyword.keyword = textvalue;
+
+    $.ajax({
+        method: "POST",
+        url: "/api",
+        data: keyword,
+        dataType: 'json',
+        async: true
+    }).done(function( data ) {
+        if(JSON.stringify(data) == "{}"){
+            alert("일치하는 결과가 없습니다.")
+            document.getElementsByClassName('loader')[0].style.display = 'none';
+            document.getElementById('searchBtn').value = ""
+            return
+        }
+        sessionStorage.location = JSON.stringify(data.location);
+        sessionStorage.crimeData = JSON.stringify(data.crimeData);
+        sessionStorage.markData = JSON.stringify(data.markData);
+        window.location = "/result";
+    });
+}

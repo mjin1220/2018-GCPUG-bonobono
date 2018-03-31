@@ -49,12 +49,15 @@ router.post('/api', function (req, res1, next) {
     result.lng = location.getElementsByTagName('lng')[0].childNodes[0].nodeValue;
 
     const options = {
-      query: `CREATE TEMP FUNCTION RADIANS(x FLOAT64) AS (ACOS(-1) * x / 180); SELECT primary_type, latitude, longitude FROM \`bigquery-public-data.chicago_crime.crime\` WHERE ( 6371 * acos( cos( RADIANS(${result.lat}) ) * cos( RADIANS( latitude ) ) * cos( RADIANS( longitude ) - RADIANS(${result.lng}) ) + sin( RADIANS(${result.lat}) ) * sin( RADIANS( latitude ) ) ) ) < 0.2`,
+
+      query: `CREATE TEMP FUNCTION RADIANS(x FLOAT64) AS (ACOS(-1) * x / 180); SELECT primary_type, latitude, longitude FROM \`bigquery-public-data.chicago_crime.crime\` WHERE ( 6371 * acos( cos( RADIANS(${result.lat}) ) * cos( RADIANS( latitude ) ) * cos( RADIANS( longitude ) - RADIANS(${result.lng}) ) + sin( RADIANS(${result.lat}) ) * sin( RADIANS( latitude ) ) ) ) < 0.5 LIMIT 500`,
+
       timeoutMs: 10000, // Time out after 10 seconds.
       useLegacySql: false, // Use standard SQL syntax for queries.
     };
 
-    var rows2 =  db.query("SELECT name, latitude, longitude FROM chicago_airbnb.airbnb WHERE ( 6371 * acos( cos( radians(" + result.lat + ") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(" + result.lng + ") ) + sin( radians(" + result.lat + ") ) * sin( radians( latitude ) ) ) ) < 0.2")
+    var rows2 =  db.query("SELECT name, latitude, longitude FROM chicago_airbnb.airbnb WHERE ( 6371 * acos( cos( radians(" + result.lat + ") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(" + result.lng + ") ) + sin( radians(" + result.lat + ") ) * sin( radians( latitude ) ) ) ) < 0.1")
+
 
   
     bigquery
