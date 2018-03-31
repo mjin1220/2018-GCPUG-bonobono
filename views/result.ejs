@@ -59,36 +59,13 @@
     </table>
     <div id="map">
 
-    </div>
-    <table class="recommend">
-        <tr>
-            <td>
-                <h4>Safety Rank</h4>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button>Button 1</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button>Button 2</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button>Button 3</button>
-            </td>
-        </tr>
-    </table>
-</section>
-
-<script>
-    window.onload = function () { // init
-        let checkboxes = document.getElementsByClassName('searchCheck');
-        for (let i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].checked = true;
+    <script>
+        window.onload = function () { // init 
+            let checkboxes = document.getElementsByClassName('searchCheck');
+            for (let i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = true;
+            }
+            console.log(localStorage.crimeData);
         }
     }
 
