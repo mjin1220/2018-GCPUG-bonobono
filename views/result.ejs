@@ -58,7 +58,9 @@
 
         </div>
         <div class="recommend">
-
+            <div class="semi-title2">
+                <h3>Best house</h3>
+            </div>
         </div>
 
     </section>
@@ -107,7 +109,7 @@
             centerMark = JSON.parse(centerMark);
             markers = JSON.parse(markers);
             markers_crime = JSON.parse(markers_crime);
-            
+
             //console.log(typeof(crimeData));
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 18,
@@ -117,7 +119,33 @@
                 }
             });
 
+            markers.sort(function (a, b) {
+                return b["review_scores_rating"] - a["review_scores_rating"];
 
+            });
+
+            for (var i = 0; i < 5; i++) {
+                let divHouse = document.createElement('div');
+                divHouse.setAttribute('class', 'house');
+                let divHouseImage = document.createElement('div');
+                divHouseImage.setAttribute('class', 'house-image');
+                let divHouseName = document.createElement('div');
+                divHouseName.setAttribute('class', 'house-name');
+                let img = document.createElement('img');
+                img.src = markers[i].thumbnail_url;
+                img.setAttribute('width', "108");
+                img.setAttribute('height', "72");
+                let textarea = document.createElement('textarea');
+                textarea.value = JSON.stringify(markers[i].name);
+                textarea.setAttribute('wrap', "virtual");
+                textarea.style.height = "60px";
+
+                divHouseImage.appendChild(img);
+                divHouseName.appendChild(textarea);
+                divHouse.appendChild(divHouseImage)
+                divHouse.appendChild(divHouseName)
+                document.getElementsByClassName('recommend')[0].appendChild(divHouse);
+            }
 
             for (var i = 0; i < markers.length; i++) {
                 marker = new google.maps.Marker({
@@ -172,7 +200,7 @@
                 }
             }
 
-            for(let i = 0 ; i < allMarkers.length ; i++){
+            for (let i = 0; i < allMarkers.length; i++) {
                 allMarkers[i].setMap(null);
                 allMarkers[i].setVisible(false)
             }

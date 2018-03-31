@@ -134,3 +134,30 @@ input {
     transform: rotate(360deg);
   }
 }
+.semi-title2{
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  vertical-align: center;
+  border-bottom:1px solid #343A40;
+  color: white;
+}
+
+.house{
+  margin: 10px;
+  background-color: white;
+  height: 80px;
+  display: flex;
+  text-align: left;
+  vertical-align: middle;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.house .house-image{
+  padding: 3px;
+}
+
+.house .house-name{
+}
