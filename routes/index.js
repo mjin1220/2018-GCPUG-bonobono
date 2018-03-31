@@ -60,6 +60,7 @@ router.post('/api', function (req, res1, next) {
         const rows = results[0];
         let resultJSON = {};
         resultJSON.crimeData = rows;
+        resultJSON.markData = [];
         res1.json(resultJSON);
       })
       .catch(err => {
