@@ -19,12 +19,11 @@ router.get('/result', function(req, res, next){
   });
 })
 
-
 router.post('/api', function (req, res1, next) {
   let receivedJson = req.body;
 
   const BigQuery = require('@google-cloud/bigquery');
-  const bigquery = new BigQuery({                                                                                                                                                                                                                                                                                                                                                                 
+  const bigquery = new BigQuery({                                                     
     projectId: 'gcp-hackathon18-icn-2910',
   });
 
@@ -57,9 +56,7 @@ router.post('/api', function (req, res1, next) {
     };
 
     var rows2 =  db.query("SELECT name, latitude, longitude FROM chicago_airbnb.airbnb WHERE ( 6371 * acos( cos( radians(" + result.lat + ") ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(" + result.lng + ") ) + sin( radians(" + result.lat + ") ) * sin( radians( latitude ) ) ) ) < 0.5")
-
-
-  
+    
     bigquery
       .query(options)
       .then(results => {
