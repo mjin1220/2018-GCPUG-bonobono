@@ -1,142 +1,133 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
-    <!-- <link rel="stylesheet" href="stylesheets/result.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/result.css">
     <title>result</title>
     <style>
-        #map {
-            height: 546px;
-            width: 70%;
-            margin-left: auto;
-            margin-right: auto;
-            float: left;
-        }
+
     </style>
 </head>
 
 <body>
-    <div style="text-align:center;">
-        <input type="text" style="width:80%; margin-bottom: 1%;" placeholder="검색어를 입력해주세요.">
+<header class="header">
+    <div class="header-left">
+        <input type="text" style="width:80%" placeholder="검색어를 입력해주세요.">
     </div>
-    <div class='main_container'>
-        <table style="width:15%; float:left;">
-            <tr>
-                <td>
-                    <h4>Custom
-                        <br>Checkboxes</h4>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="searchCheck" value="value_1" />
-
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="searchCheck" value="value_2" />
-
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="searchCheck" value="value_3" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="searchCheck" value="value_4" />
-
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="button" value="search" />
-
-                </td>
-            </tr>
-        </table>
-        <div id="map"></div>
-        <table>
-            <tr>
-                <td>
-                    <h4> recomand
-                        <br> Accommodation
-                    </h4>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="button" value="button1" disabled>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="button" value="button2" disabled>
-
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="button" value="button3" disabled>
-
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="button" value="button4" disabled>
-
-                </td>
-            </tr>
-        </table>
+    <div class="header-right">
+        <h1><span style="color:#ff5a5f">Air</span> <span style="color:#2db9ec"> Bonobono</span> </h1>
     </div>
+</header>
+<section class="container">
+    <table class="checkbox" style="width:15%; float:left;">
+        <tr>
+            <td>
+                <h4>Custom
+                    <br>Checkboxes</h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" class="searchCheck" value="value_1" />
 
-    <script>
-        window.onload = function () { // init 
-            let checkboxes = document.getElementsByClassName('searchCheck');
-            for (let i = 0; i < checkboxes.length; i++) {
-                checkboxes[i].checked = true;
-            }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" class="searchCheck" value="value_2" />
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" class="searchCheck" value="value_3" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" class="searchCheck" value="value_4" />
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="search" />
+
+            </td>
+        </tr>
+    </table>
+    <div id="map">
+
+    </div>
+    <table class="recommend">
+        <tr>
+            <td>
+                <h4>Safety Rank</h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button>Button 1</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button>Button 2</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button>Button 3</button>
+            </td>
+        </tr>
+    </table>
+</section>
+
+<script>
+    window.onload = function () { // init
+        let checkboxes = document.getElementsByClassName('searchCheck');
+        for (let i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = true;
         }
+    }
 
-        function myMap() {
-            var mapOptions = {
-                center: new google.maps.LatLng(51.5, -0.12),
-                zoom: 10,
-                mapTypeId: google.maps.MapTypeId.HYBRID
-            }
-            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    function myMap() {
+        var mapOptions = {
+            center: new google.maps.LatLng(51.5, -0.12),
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.HYBRID
         }
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    }
 
-        function initMap() {
-            var center_of_chicago = {
-                lat: 41.881832,
-                lng: -87.623177
-            };
-            var chicago_university = {
-                lat: 41.869358,
-                lng: -87.670521
-            };
+    function initMap() {
+        var center_of_chicago = {
+            lat: 41.881832,
+            lng: -87.623177
+        };
+        var chicago_university = {
+            lat: 41.869358,
+            lng: -87.670521
+        };
 
-            var markers = [center_of_chicago, chicago_university];
+        var markers = [center_of_chicago, chicago_university];
 
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 11,
-                center: center_of_chicago
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 11,
+            center: center_of_chicago
+        });
+
+        for (i = 0; i < markers.length; i++) {
+            marker = new google.maps.Marker({
+                position: markers[i],
+                map: map
             });
-
-            for (i = 0; i < markers.length; i++) {
-                marker = new google.maps.Marker({
-                    position: markers[i],
-                    map: map
-                });
-            }
         }
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQZ22KzXUgiMCBSejOXiv1DXZ0NWHUkgE&callback=initMap">
-    </script>
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQZ22KzXUgiMCBSejOXiv1DXZ0NWHUkgE&callback=initMap">
+</script>
 
 </body>
 
