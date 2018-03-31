@@ -37,7 +37,7 @@ function searchData(e){
             document.getElementById('searchBtn').value = ""
             return
         }
-        // sessionStorage.crimeData = JSON.stringify(data.crimeData);
+        sessionStorage.crimeData = JSON.stringify(data.crimeData);
         sessionStorage.markData = JSON.stringify(data.markData);
         window.location = "/result";
     });
