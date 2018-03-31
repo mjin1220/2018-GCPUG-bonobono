@@ -11,170 +11,184 @@
 </head>
 
 <body>
-        <section class="header">
-                <div class="logo">
-                    <h1>
-                        <span style="color:#ff5a5f">Air</span>
-                        <span style="color:#2db9ec"> Bonobono</span>
-                        <h1>
-                </div>
-                <div class="search">
-                    <input type="text" style="width: 90%;" placeholder="search...">
-                </div>
-                <div class="icon">
-                    <img src="images/search_icon.png" width="42" height="42">
-                </div>
-        
-            </section>
-            <section class="container">
-                <div class="checkbox" style="width:15%; float:left;">
-                    <div class="box">
-                        <input type="checkbox" class="searchCheck" value="value_1" />
-                    </div>
-                    <div class="box">
-                        <input type="checkbox" class="searchCheck" value="value_1" />
-                    </div>
-                    <div class="box">
-                        <input type="checkbox" class="searchCheck" value="value_1" />
-                    </div>
-        
-                </div>
-                <div id="map">
-        
-                </div>
-                <table class="recommend">
-                    <tr>
-                        <td>
-                            <h4>Safety Rank</h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button>Button 1</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button>Button 2</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button>Button 3</button>
-                        </td>
-                    </tr>
-                </table>
-            </section>
-            <div id="snackbar">Some text some message..</div>
+    <section class="header">
+        <div class="logo">
+            <h1>
+                <span style="color:#ff5a5f">Air</span>
+                <span style="color:#2db9ec"> Bonobono</span>
+                <h1>
+        </div>
+        <div class="search">
+            <input type="text" style="width: 90%;" placeholder="search...">
+        </div>
+        <div class="icon">
+            <img src="images/search_icon.png" width="42" height="42">
+        </div>
 
-            <script>
-                window.onload = function () { // init
-                    let checkboxes = document.getElementsByClassName('searchCheck');
-                    for (let i = 0; i < checkboxes.length; i++) {
-                        checkboxes[i].checked = true;
-                    }
-                    console.log(sessionStorage.location);
-                    console.log(sessionStorage.crimeData);
-                    console.log(sessionStorage.markData);
+    </section>
+    <section class="container">
+        <div class="checkbox" style="width:15%; float:left;">
+            <div class="semi-title">
+                <h3>Crime Filter</h3>
+            </div>
+            <div class="box">
+                <input type="checkbox" class="searchCheck" value="value_1" /> crime_1
+            </div>
+            <div class="box">
+                <input type="checkbox" class="searchCheck" value="value_1" /> crime_2
+            </div>
+            <div class="box">
+                <input type="checkbox" class="searchCheck" value="value_1" /> crime_3
+            </div>
+            <div class="box">
+                <input type="checkbox" class="searchCheck" value="value_1" /> crime_4
+            </div>
+            <div class="box">
+                <input type="checkbox" class="searchCheck" value="value_1" /> crime_5
+            </div>
+            <div class="filter_search">
+                <form>
+                    <input type="button" value="Search">
+                </form>
+            </div>
+        </div>
+
+        <div id="map">
+
+        </div>
+        <table class="recommend">
+            <tr>
+                <td>
+                    <h4>Safety Rank</h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button>Button 1</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button>Button 2</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button>Button 3</button>
+                </td>
+            </tr>
+        </table>
+    </section>
+    <div id="snackbar">Some text some message..</div>
+
+    <script>
+        window.onload = function () { // init
+            let checkboxes = document.getElementsByClassName('searchCheck');
+            for (let i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = true;
+            }
+            console.log(sessionStorage.location);
+            console.log(sessionStorage.crimeData);
+            console.log(sessionStorage.markData);
+        }
+
+        function addMarker(location, title, label, map) {
+            var m = new google.maps.Marker({
+                position: location,
+                title: title,
+                label: label,
+                map: map
+            });
+        }
+
+        function myMap() {
+            var mapOptions = {
+                center: new google.maps.LatLng(51.5, -0.12),
+                zoom: 10,
+                mapTypeId: google.maps.MapTypeId.HYBRID
+            }
+            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        }
+
+        function initMap() {
+            var center_of_chicago = {
+                lat: 41.881832,
+                lng: -87.623177
+            };
+
+
+            var markers = sessionStorage.markData;
+            var centerMark = sessionStorage.location;
+            var markers_crime = sessionStorage.crimeData;
+
+
+
+            centerMark = JSON.parse(centerMark);
+            markers = JSON.parse(markers);
+            markers_crime = JSON.parse(markers_crime);
+
+            console.log(typeof (centerMark));
+            console.log(Number(centerMark.lat));
+            console.log(typeof (Number(centerMark.lat)));
+
+            //console.log(typeof(crimeData));
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 20,
+                center: {
+                    lat: Number(centerMark.lat),
+                    lng: Number(centerMark.lng)
                 }
-
-                function addMarker(location, title, label, map) {
-                    var m = new google.maps.Marker({
-                        position: location,
-                        title: title,
-                        label: label,
-                        map: map
-                    });
-                }
-
-                function myMap() {
-                    var mapOptions = {
-                        center: new google.maps.LatLng(51.5, -0.12),
-                        zoom: 10,
-                        mapTypeId: google.maps.MapTypeId.HYBRID
-                    }
-                    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-                }
-
-                function initMap() {
-                    var center_of_chicago = {
-                        lat: 41.881832,
-                        lng: -87.623177
-                    };
-
-
-                    var markers = sessionStorage.markData;
-                    var centerMark = sessionStorage.location;
-                    var markers_crime = sessionStorage.crimeData;
+            });
 
 
 
-                    centerMark = JSON.parse(centerMark);
-                    markers = JSON.parse(markers);
-                    markers_crime = JSON.parse(markers_crime);
+            for (var i = 0; i < markers.length; i++) {
+                console.log(i + " " + JSON.stringify(markers[i].name));
 
-                    console.log(typeof (centerMark));
-                    console.log(Number(centerMark.lat));
-                    console.log(typeof (Number(centerMark.lat)));
+                marker = new google.maps.Marker({
+                    position: {
+                        lat: markers[i].latitude,
+                        lng: markers[i].longitude
+                    },
+                    map: map,
+                    title: JSON.stringify(markers[i].name)
+                });
 
-                    //console.log(typeof(crimeData));
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 20,
-                        center: {
-                            lat: Number(centerMark.lat),
-                            lng: Number(centerMark.lng)
-                        }
-                    });
+                marker.addListener('click', function () {
+                    var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    x.innerText = this.title;
+                    setTimeout(function () {
+                        x.className = x.className.replace("show", "");
+                    }, 2000);
 
+                });
+            }
 
+            // console.log("!" + markers_crime.length)
+            // for (var i = 0; i < markers_crime.length; i) {
+            //      marker = new google.maps.Marker({
 
-                    for (var i = 0; i < markers.length; i++) {
-                        console.log(i + " " + JSON.stringify(markers[i].name));
+            //         position: {
+            //             lat: Number(markers_crime[i].latitude),
+            //             lng: Number(markers_crime[i].longitude)
+            //         },
+            //         map: map,
+            //         icon: {
+            //             path: google.maps.SymbolPath.CIRCLE,
+            //             fillColor: 'blue',
+            //             fillOpacity: .2,
+            //             strokeColor: 'white',
+            //             strokeWeight: .5,
+            //             scale: 10
+            //         }
+            //     });
+            // }
 
-                        marker = new google.maps.Marker({
-                            position: {
-                                lat: markers[i].latitude,
-                                lng: markers[i].longitude
-                            },
-                            map: map,
-                            title: JSON.stringify(markers[i].name)
-                        });
-
-                        marker.addListener('click', function () {
-                            var x = document.getElementById("snackbar");
-                            x.className = "show";
-                            x.innerText = this.title;
-                            setTimeout(function () {
-                                x.className = x.className.replace("show", "");
-                            }, 2000);
-
-                        });
-                    }
-
-                    // console.log("!" + markers_crime.length)
-                    // for (var i = 0; i < markers_crime.length; i) {
-                    //      marker = new google.maps.Marker({
-
-                    //         position: {
-                    //             lat: Number(markers_crime[i].latitude),
-                    //             lng: Number(markers_crime[i].longitude)
-                    //         },
-                    //         map: map,
-                    //         icon: {
-                    //             path: google.maps.SymbolPath.CIRCLE,
-                    //             fillColor: 'blue',
-                    //             fillOpacity: .2,
-                    //             strokeColor: 'white',
-                    //             strokeWeight: .5,
-                    //             scale: 10
-                    //         }
-                    //     });
-                    // }
-
-                }
-            </script>
-            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQZ22KzXUgiMCBSejOXiv1DXZ0NWHUkgE&callback=initMap">
-            </script>
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQZ22KzXUgiMCBSejOXiv1DXZ0NWHUkgE&callback=initMap">
+    </script>
 
 </body>
 
