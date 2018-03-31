@@ -11,57 +11,61 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="header-left">
-            <input type="text" style="width:80%" placeholder="검색어를 입력해주세요.">
-        </div>
-        <div class="header-right">
-            <h1>
-                <span style="color:#ff5a5f">Air</span>
-                <span style="color:#2db9ec"> Bonobono</span>
-            </h1>
-        </div>
-    </header>
-    <section class="container">
-        <table class="checkbox" style="width:15%; float:left;">
-            <tr>
-                <td>
-                    <h4>Custom
-                        <br>Checkboxes</h4>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="searchCheck" value="value_1" />
-
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="searchCheck" value="value_2" />
-
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="searchCheck" value="value_3" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="searchCheck" value="value_4" />
-
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="button" value="search" />
-
-                </td>
-            </tr>
-        </table>
-        <div id="snackbar">Some text some message..</div>
-        <div id="map">
+        <section class="header">
+                <div class="logo">
+                    <h1>
+                        <span style="color:#ff5a5f">Air</span>
+                        <span style="color:#2db9ec"> Bonobono</span>
+                        <h1>
+                </div>
+                <div class="search">
+                    <input type="text" style="width: 90%;" placeholder="search...">
+                </div>
+                <div class="icon">
+                    <img src="images/search_icon.png" width="42" height="42">
+                </div>
+        
+            </section>
+            <section class="container">
+                <div class="checkbox" style="width:15%; float:left;">
+                    <div class="box">
+                        <input type="checkbox" class="searchCheck" value="value_1" />
+                    </div>
+                    <div class="box">
+                        <input type="checkbox" class="searchCheck" value="value_1" />
+                    </div>
+                    <div class="box">
+                        <input type="checkbox" class="searchCheck" value="value_1" />
+                    </div>
+        
+                </div>
+                <div id="map">
+        
+                </div>
+                <table class="recommend">
+                    <tr>
+                        <td>
+                            <h4>Safety Rank</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button>Button 1</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button>Button 2</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button>Button 3</button>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            <div id="snackbar">Some text some message..</div>
 
             <script>
                 window.onload = function () { // init
@@ -115,7 +119,7 @@
 
                     //console.log(typeof(crimeData));
                     var map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 18,
+                        zoom: 20,
                         center: {
                             lat: Number(centerMark.lat),
                             lng: Number(centerMark.lng)
@@ -128,16 +132,21 @@
                         console.log(i + " " + JSON.stringify(markers[i].name));
 
                         marker = new google.maps.Marker({
-                            position: {lat : markers[i].latitude, lng :  markers[i].longitude},
+                            position: {
+                                lat: markers[i].latitude,
+                                lng: markers[i].longitude
+                            },
                             map: map,
-                            title : JSON.stringify(markers[i].name)
+                            title: JSON.stringify(markers[i].name)
                         });
 
-                        marker.addListener('click', function() {
+                        marker.addListener('click', function () {
                             var x = document.getElementById("snackbar");
                             x.className = "show";
                             x.innerText = this.title;
-                            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
+                            setTimeout(function () {
+                                x.className = x.className.replace("show", "");
+                            }, 2000);
 
                         });
                     }
