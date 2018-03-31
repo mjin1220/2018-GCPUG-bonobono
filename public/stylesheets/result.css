@@ -145,7 +145,7 @@ input {
 
 .house{
   margin: 10px;
-  background-color: white;
+  background-color: rgb(73, 80, 86);
   height: 80px;
   display: flex;
   text-align: left;
