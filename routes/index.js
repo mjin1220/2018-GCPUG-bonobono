@@ -17,6 +17,12 @@ router.get('/result', function(req, res, next){
   });
 })
 
+router.get('/loading', function(req, res, next){
+  res.render('loading', {
+    title: 'Air Bonobono'
+  });
+})
+
 router.get('/queryTest', function (req, res1, next) {
   const BigQuery = require('@google-cloud/bigquery');
   const bigquery = new BigQuery({
