@@ -145,7 +145,7 @@ input {
 
 .house{
   margin: 10px;
-  background-color:  rgb(84, 89, 94);
+  background-color:  rgb(186, 188, 190);
   height: 80px;
   display: flex;
   text-align: left;
@@ -160,8 +160,8 @@ input {
 }
 
 .house .house-name textarea{
-  background-color: rgb(84, 89, 94);
-  color: #fff;
+  background-color: rgb(186, 188, 190);
+  color: rgb(0, 0, 0);
   font-weight: 800;
   border: none;
 }
