@@ -49,7 +49,7 @@ router.post('/api', function (req, res1, next) {
 
     const options = {
 
-      query: `CREATE TEMP FUNCTION RADIANS(x FLOAT64) AS (ACOS(-1) * x / 180); SELECT primary_type, latitude, longitude FROM \`bigquery-public-data.chicago_crime.crime\` WHERE ( 6371 * acos( cos( RADIANS(${result.lat}) ) * cos( RADIANS( latitude ) ) * cos( RADIANS( longitude ) - RADIANS(${result.lng}) ) + sin( RADIANS(${result.lat}) ) * sin( RADIANS( latitude ) ) ) ) < 0.5 LIMIT 500`,
+      query: `CREATE TEMP FUNCTION RADIANS(x FLOAT64) AS (ACOS(-1) * x / 180); SELECT primary_type, latitude, longitude FROM \`bigquery-public-data.chicago_crime.crime\` WHERE ( 6371 * acos( cos( RADIANS(${result.lat}) ) * cos( RADIANS( latitude ) ) * cos( RADIANS( longitude ) - RADIANS(${result.lng}) ) + sin( RADIANS(${result.lat}) ) * sin( RADIANS( latitude ) ) ) ) < 0.5 AND (primary_type="ROBBERY" OR primary_type="WEAPONS VIOLATION" OR primary_type="MOTOR VEHICLE THEFT" OR primary_type="ASSAULT" OR primary_type="HOMICIDE") LIMIT 500`,
 
       timeoutMs: 10000, // Time out after 10 seconds.
       useLegacySql: false, // Use standard SQL syntax for queries.

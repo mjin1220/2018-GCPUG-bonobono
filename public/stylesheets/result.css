@@ -40,6 +40,7 @@ input {
   background-color: #495056;
   flex: box;
   flex: 1;
+  float:left;
 }
 
 #map {
@@ -50,58 +51,9 @@ input {
 }
 
 .recommend {
+  background-color: #495056;
   flex: 1;
-  text-align: center;
-}
-
-.recommend:before {
-  content: '';
-  height: 100%;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-button {
-  background: #2DB9EC;
-  color: #fff;
-  border: none;
-  position: relative;
-  height: 60px;
-  font-size: 1.6em;
-  padding: 0 2em;
-  cursor: pointer;
-  transition: 800ms ease all;
-  outline: none;
-}
-
-button:hover {
-  background: #fff;
-  color: #2DB9EC;
-}
-
-button:before,
-button:after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 2px;
-  width: 0;
-  background: #2DB9EC;
-  transition: 400ms ease all;
-}
-
-button:after {
-  right: inherit;
-  top: inherit;
-  left: 0;
-  bottom: 0;
-}
-
-button:hover:before,
-button:hover:after {
-  width: 100%;
-  transition: 800ms ease all;
+  float:right;
 }
 
 #snackbar {
@@ -146,4 +98,39 @@ button:hover:after {
   text-align: center;
   vertical-align: center;
 
+}
+
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

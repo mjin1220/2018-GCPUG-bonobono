@@ -19,15 +19,16 @@
                 <h1>
         </div>
         <div class="search">
-            <input type="text" style="width: 90%;" placeholder="search...">
+            <input type="text" id="searchBtn" placeholder="Enter the location..." style="width: 90%;" onkeypress="return searchData(event);">
         </div>
-        <div class="icon">
+        </div>
+        <div class="icon" id="searchIcon" onclick="return searchData_ByPress();">
             <img src="images/search_icon.png" width="42" height="42">
         </div>
 
     </section>
     <section class="container">
-        <div class="checkbox" style="width:15%; float:left;">
+        <div class="checkbox">
             <div class="semi-title">
                 <h3>Crime Filter</h3>
             </div>
@@ -48,7 +49,7 @@
             </div>
             <div class="filter_search">
                 <form>
-                    <input type="button" value="Search">
+                    <input type="button" value="Search" onclick="applyFilter();">
                 </form>
             </div>
         </div>
@@ -56,40 +57,22 @@
         <div id="map">
 
         </div>
-        <table class="recommend">
-            <tr>
-                <td>
-                    <h4>Safety Rank</h4>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button>Button 1</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button>Button 2</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button>Button 3</button>
-                </td>
-            </tr>
-        </table>
+        <div class="recommend">
+
+        </div>
+
     </section>
     <div id="snackbar">Some text some message..</div>
-
+    <div class="loader" style="display:none;"></div>
     <script>
+        let allMarkers = [];
+        let map;
+
         window.onload = function () { // init
             let checkboxes = document.getElementsByClassName('searchCheck');
             for (let i = 0; i < checkboxes.length; i++) {
                 checkboxes[i].checked = true;
             }
-            console.log(sessionStorage.location);
-            console.log(sessionStorage.crimeData);
-            console.log(sessionStorage.markData);
         }
 
         function addMarker(location, title, label, map) {
@@ -107,7 +90,7 @@
                 zoom: 10,
                 mapTypeId: google.maps.MapTypeId.HYBRID
             }
-            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+            map = new google.maps.Map(document.getElementById("map"), mapOptions);
         }
 
         function initMap() {
@@ -121,18 +104,12 @@
             var centerMark = sessionStorage.location;
             var markers_crime = sessionStorage.crimeData;
 
-
-
             centerMark = JSON.parse(centerMark);
             markers = JSON.parse(markers);
             markers_crime = JSON.parse(markers_crime);
-
-            console.log(typeof (centerMark));
-            console.log(Number(centerMark.lat));
-            console.log(typeof (Number(centerMark.lat)));
-
+            
             //console.log(typeof(crimeData));
-            var map = new google.maps.Map(document.getElementById('map'), {
+            map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 18,
                 center: {
                     lat: Number(centerMark.lat),
@@ -143,8 +120,6 @@
 
 
             for (var i = 0; i < markers.length; i++) {
-                console.log(i + " " + JSON.stringify(markers[i].name));
-
                 marker = new google.maps.Marker({
                     position: {
                         lat: markers[i].latitude,
@@ -165,9 +140,8 @@
                 });
             }
 
-            console.log("!" + markers_crime.length)
             for (var i = 0; i < markers_crime.length; i++) {
-                 marker = new google.maps.Marker({
+                marker = new google.maps.Marker({
 
                     position: {
                         lat: Number(markers_crime[i].latitude),
@@ -181,13 +155,58 @@
                         strokeColor: 'white',
                         strokeWeight: .5,
                         scale: 10
-                    }
+                    },
+                    snippet: markers_crime[i].primary_type
                 });
+                allMarkers.push(marker);
             }
         }
-            </script>
-            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQZ22KzXUgiMCBSejOXiv1DXZ0NWHUkgE&callback=initMap">
-            </script>
+
+        function applyFilter() {
+            let checkBox = document.getElementsByClassName("searchCheck")
+            let crimes = ["ROBBERY", "WEAPONS VIOLATION", "MOTOR VEHICLE THEFT", "ASSAULT", "HOMICIDE"]
+            let selected = [];
+            for (let i = 0; i < checkBox.length; i++) {
+                if (checkBox[i].checked == true) {
+                    selected.push(crimes[i])
+                }
+            }
+
+            for(let i = 0 ; i < allMarkers.length ; i++){
+                allMarkers[i].setMap(null);
+                allMarkers[i].setVisible(false)
+            }
+            allMarkers = new Array();
+
+            let markers_crime = sessionStorage.crimeData;
+            markers_crime = JSON.parse(markers_crime);
+            for (var i = 0; i < markers_crime.length; i++) {
+                if (selected.indexOf(markers_crime[i].primary_type) == -1) {
+                    continue;
+                }
+                marker = new google.maps.Marker({
+                    position: {
+                        lat: Number(markers_crime[i].latitude),
+                        lng: Number(markers_crime[i].longitude)
+                    },
+                    map: map,
+                    icon: {
+                        path: google.maps.SymbolPath.CIRCLE,
+                        fillColor: 'blue',
+                        fillOpacity: .2,
+                        strokeColor: 'white',
+                        strokeWeight: .5,
+                        scale: 10
+                    },
+                    snippet: markers_crime[i].primary_type
+                });
+                allMarkers.push(marker);
+            }
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQZ22KzXUgiMCBSejOXiv1DXZ0NWHUkgE&callback=initMap">
+    </script>
+    <script src="javascripts/result.js"></script>
 
 </body>
 
