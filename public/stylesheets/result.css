@@ -160,4 +160,7 @@ input {
 }
 
 .house .house-name{
+  color:rgb(73, 80, 86);
+  background-color: #fff;
+  font-weight: 800;
 }
