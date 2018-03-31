@@ -140,12 +140,12 @@ input {
   text-align: center;
   vertical-align: center;
   border-bottom:1px solid #ffffff;
-  color: #343A40;
+  color: rgb(84, 89, 94);
 }
 
 .house{
   margin: 10px;
-  background-color: rgb(73, 80, 86);
+  background-color:  rgb(84, 89, 94);
   height: 80px;
   display: flex;
   text-align: left;
@@ -160,7 +160,7 @@ input {
 }
 
 .house .house-name textarea{
-  background-color:rgb(73, 80, 86);
+  background-color: rgb(84, 89, 94);
   color: #fff;
   font-weight: 800;
   border: none;
