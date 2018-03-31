@@ -4,6 +4,8 @@ let fs = require('fs');
 let http = require('http');
 var DOMParser = require('xmldom').DOMParser;
 
+var db = require('./sqlhandler.js');
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', {
@@ -16,6 +18,7 @@ router.get('/result', function(req, res, next){
     title: 'Air Bonobono'
   });
 })
+
 
 router.post('/api', function (req, res1, next) {
   let receivedJson = req.body;
