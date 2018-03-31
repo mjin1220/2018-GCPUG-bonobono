@@ -20,10 +20,8 @@ router.get('/result', function(req, res, next){
 router.post('/api', function (req, res1, next) {
   let receivedJson = req.body;
 
-  console.log(receivedJson)
-
   const BigQuery = require('@google-cloud/bigquery');
-  const bigquery = new BigQuery({
+  const bigquery = new BigQuery({                                                                                                                                                                                                                                                                                                                                                                 
     projectId: 'gcp-hackathon18-icn-2910',
   });
 
@@ -40,7 +38,7 @@ router.post('/api', function (req, res1, next) {
       res1.json({})
       return;
     }
-    
+
     let location = doc.getElementsByTagName('geometry')[0].getElementsByTagName('location')[0];
 
     let result = {};
@@ -57,7 +55,9 @@ router.post('/api', function (req, res1, next) {
       .query(options)
       .then(results => {
         const rows = results[0];
-        res1.json(rows)
+        let resultJSON = {};
+        resultJSON.crimeData = rows;
+        res1.json(resultJSON);
       })
       .catch(err => {
         console.error('ERROR:', err);
