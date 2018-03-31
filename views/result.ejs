@@ -96,11 +96,17 @@
 
 
                     var markers = sessionStorage.markData;
+                    var centerMark = sessionStorage.location;
+                    centerMark = JSON.parse(centerMark);
+
+                    console.log(typeof(centerMark));
+                    console.log( Number(centerMark.lat));
+                    console.log(typeof( Number(centerMark.lat)));
 
                     //console.log(typeof(crimeData));
                     var map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 18,
-                        center: center_of_chicago
+                        center: {lat : Number(centerMark.lat), lng : Number(centerMark.lng)}
                     });
 
                     markers = JSON.parse(markers);
