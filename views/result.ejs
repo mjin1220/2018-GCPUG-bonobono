@@ -76,7 +76,12 @@
                 }
 
                 function addMarker(location, title, label, map) {
-                    var m = new google.maps.Marker({position: location, title: title, label: label, map: map});
+                    var m = new google.maps.Marker({
+                        position: location,
+                        title: title,
+                        label: label,
+                        map: map
+                    });
                 }
 
                 function myMap() {
@@ -97,26 +102,60 @@
 
                     var markers = sessionStorage.markData;
                     var centerMark = sessionStorage.location;
-                    centerMark = JSON.parse(centerMark);
+                    var markers_crime = sessionStorage.crimeData;
 
-                    console.log(typeof(centerMark));
-                    console.log( Number(centerMark.lat));
-                    console.log(typeof( Number(centerMark.lat)));
+    
+
+                    centerMark = JSON.parse(centerMark);
+                    markers = JSON.parse(markers);
+                    markers_crime = JSON.parse(markers_crime);
+
+                    console.log(typeof (centerMark));
+                    console.log(Number(centerMark.lat));
+                    console.log(typeof (Number(centerMark.lat)));
 
                     //console.log(typeof(crimeData));
                     var map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 18,
-                        center: {lat : Number(centerMark.lat), lng : Number(centerMark.lng)}
+                        center: {
+                            lat: Number(centerMark.lat),
+                            lng: Number(centerMark.lng)
+                        }
                     });
 
-                    markers = JSON.parse(markers);
+
 
                     for (var i = 0; i < markers.length; i++) {
                         marker = new google.maps.Marker({
-                           position: {lat : markers[i].latitude, lng :  markers[i].longitude},
+                            position: {
+                                lat: markers[i].latitude,
+                                lng: markers[i].longitude
+                            },
                             map: map
                         });
                     }
+
+                    console.log(markers_crime)
+                    /*for (var i = 0; i < markers_crime.length; i+5) {
+                         marker = new google.maps.Marker({
+    
+                            position: {
+                                lat: Number(markers_crime[i].latitude),
+                                lng: Number(markers_crime[i].longitude)
+                            },
+                            map: map,
+                            icon: {
+                                path: google.maps.SymbolPath.CIRCLE,
+                                fillColor: 'blue',
+                                fillOpacity: .2,
+                                strokeColor: 'white',
+                                strokeWeight: .5,
+                                scale: 10
+                            }
+                        });
+       
+                    }*/
+
                 }
             </script>
             <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQZ22KzXUgiMCBSejOXiv1DXZ0NWHUkgE&callback=initMap">
