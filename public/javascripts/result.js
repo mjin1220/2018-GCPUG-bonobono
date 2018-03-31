@@ -7,7 +7,14 @@ function myMap() {
     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 }
 
-$('#searchBtn').click(function () {
+$(document).keypress(function(e) {
+    var keycode = (e.keyCode ? e.keyCode : e.which);
+    if (keycode == '13') {
+        searchData();
+    }
+});
+
+function searchData() {
     var textvalue = $("#searchBtn").value;
 
     var keyworld = {"keyworld" : textvalue};
@@ -26,4 +33,4 @@ $('#searchBtn').click(function () {
 
         console.log("done");
     });
-});
+};

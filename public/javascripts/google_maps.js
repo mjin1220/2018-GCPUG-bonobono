@@ -1,3 +1,4 @@
+
 function initMap() {
     var center_of_chicago = {lat: 41.881832, lng:  -87.623177};
     var chicago_university = {lat:41.869358, lng:-87.670521};
