@@ -51,7 +51,7 @@ input {
 }
 
 .recommend {
-  background-color: #495056;
+  background-color: #ffffff;
   flex: 1;
   float:right;
 }
@@ -139,7 +139,7 @@ input {
   margin: 0;
   text-align: center;
   vertical-align: center;
-  border-bottom:1px solid #343A40;
+  border-bottom:1px solid #ffffff;
   color: white;
 }
 
@@ -160,6 +160,8 @@ input {
 }
 
 .house .house-name textarea{
+  background-color:rgb(73, 80, 86);
+  color: #fff;
   font-weight: 800;
   border: none;
 }
