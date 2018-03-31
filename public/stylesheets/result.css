@@ -139,7 +139,7 @@ input {
   margin: 0;
   text-align: center;
   vertical-align: center;
-  border-bottom:1px solid #ffffff;
+  border-bottom:1px solid rgb(84, 89, 94);
   color: rgb(84, 89, 94);
 }
 
